@@ -1,16 +1,32 @@
-# examen1_maylincruz
+lib/
+│
+├── core/
+│   └── app_router.dart    # Configuración de las rutas de la aplicación usando Go_Router
+│
+├── models/
+│   ├── books.dart            # Modelo de datos para los libros
+│   └── villains.dart         # Modelo de datos para los villanos
+│
+├── screens/
+│   ├── home.dart       # Pantalla de inicio
+│   ├── booksLists.dart # Pantalla de listado de libros
+│   └── booksDetails.dart # Pantalla de detalles del libro
+│
+│
+├── services/              
+├   ── dataServices.dart       # Servicios y utilidades para la obtención de datos
+│
+└── main.dart                # Punto de entrada de la aplicación
 
-A new Flutter project.
+Instalación y Ejecución
+Clonar el repositorio
+git clone https://github.com/MayCruz03/Examen1-MaylinCruz.git
 
-## Getting Started
+Instalar dependencias
+flutter pub get
 
-This project is a starting point for a Flutter application.
+Ejecutar la aplicación
+flutter run
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Consideración especial
+La aplicación se probó en Web con el navegador Chrome pero se espera que ejecute bien en un emulador
