@@ -12,39 +12,75 @@ class BookDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Detalles del Libro'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Título: ${book.title}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ListTile(
+              title: Text(
+                'Título',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.title,
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'Año: ${book.year}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(),
+            ListTile(
+              title: Text(
+                'Año',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.year.toString(),
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'Editorial: ${book.publisher}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(),
+            ListTile(
+              title: Text(
+                'Editorial',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.publisher,
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'ISBN: ${book.isbn}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(),
+            ListTile(
+              title: Text(
+                'ISBN',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.isbn,
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'Páginas: ${book.pages}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(),
+            ListTile(
+              title: Text(
+                'Páginas',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.pages.toString(),
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            SizedBox(height: 8),
-            Text(
-              'Notas: ${book.notes.join(", ")}',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(),
+            ListTile(
+              title: Text(
+                'Notas',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                book.notes.join(", "),
+                style: TextStyle(fontSize: 16),
+              ),
             ),
           ],
         ),

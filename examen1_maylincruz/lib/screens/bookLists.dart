@@ -9,19 +9,12 @@ class BookListScreen extends StatefulWidget {
 }
 
 class _BookListScreenState extends State<BookListScreen> {
-  late List<Book> books = [];
+  late Future<List<Book>> _futureBooks;
 
   @override
   void initState() {
     super.initState();
-    _loadBooks();
-  }
-
-  Future<void> _loadBooks() async {
-    final bookList = await DataService().getBooks();
-    setState(() {
-      books = bookList;
-    });
+    _futureBooks = DataService().getBooks();
   }
 
   @override
@@ -30,26 +23,42 @@ class _BookListScreenState extends State<BookListScreen> {
       appBar: AppBar(
         title: Text('Lista de Libros'),
       ),
-      body: _buildBookList(),
+      body: FutureBuilder<List<Book>>(
+        future: _futureBooks,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error al cargar los libros'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No hay libros disponibles'));
+          } else {
+            return _buildBookList(snapshot.data!);
+          }
+        },
+      ),
     );
   }
 
-  Widget _buildBookList() {
+  Widget _buildBookList(List<Book> books) {
     return ListView.builder(
       itemCount: books.length,
       itemBuilder: (context, index) {
         final book = books[index];
-        return ListTile(
-          title: Text(book.title),
-          subtitle: Text('Año: ${book.year.toString()}'),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookDetailsScreen(book: book),
-              ),
-            );
-          },
+        return Card(
+          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+          child: ListTile(
+            title: Text(book.title),
+            subtitle: Text('Año: ${book.year.toString()}'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BookDetailsScreen(book: book),
+                ),
+              );
+            },
+          ),
         );
       },
     );
